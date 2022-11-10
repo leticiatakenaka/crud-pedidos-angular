@@ -1,0 +1,141 @@
+<h1>Pendentes</h1>
+<div class="clr-row">
+  <div class="clr-col-10">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Número do pedido</th>
+          <th>Título</th>
+          <th>Descrição</th>
+          <th>Prioridade</th>
+          <th>Tipo</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let pedido of pedidos">
+          <td>{{ pedido.pedidoNo }}</td>
+          <td>{{ pedido.titulo }}</td>
+          <td>{{ pedido.descricao }}</td>
+          <td>{{ pedido.prioridade }}</td>
+          <td>{{ pedido.tipo }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="clr-col-2">
+    <form class="clr-form">
+      <div class="clr-form-control">
+        <label for="example" class="clr-control-label">Número do Pedido</label>
+        <div class="clr-control-container">
+          <div class="clr-input-wrapper">
+            <input
+              readonly
+              [(ngModel)]="novoPedido.pedidoNo"
+              type="text"
+              id="example"
+              name="novoPedido.pedidoNo"
+              class="clr-input"
+            />
+            <cds-icon
+              class="clr-validate-icon"
+              shape="exclamation-circle"
+            ></cds-icon>
+          </div>
+        </div>
+        <label for="example" class="clr-control-label">Titulo</label>
+        <div class="clr-control-container">
+          <div class="clr-input-wrapper">
+            <input
+              [(ngModel)]="novoPedido.titulo"
+              type="text"
+              id="example"
+              name="novoPedido.titulo"
+              class="clr-input"
+            />
+            <cds-icon
+              class="clr-validate-icon"
+              shape="exclamation-circle"
+            ></cds-icon>
+          </div>
+        </div>
+        <label for="example" class="clr-control-label">Descrição</label>
+        <div class="clr-input-wrapper">
+          <input
+            [(ngModel)]="novoPedido.descricao"
+            type="text"
+            id="example"
+            name="novoPedido.descricao"
+            class="clr-input"
+          />
+          <cds-icon
+            class="clr-validate-icon"
+            shape="exclamation-circle"
+          ></cds-icon>
+        </div>
+      </div>
+      <div class="clr-control-container">
+        <clr-combobox-container>
+          <label>Prioridade</label>
+          <clr-combobox
+            [(ngModel)]="novoPedido.prioridade"
+            name="novoPedido.prioridade"
+            required
+            placeholder="Selecione a prioridade"
+          >
+            <clr-options>
+              <clr-option clrValue="Baixa">Baixa</clr-option>
+              <clr-option clrValue="Alta">Alta</clr-option>
+            </clr-options>
+          </clr-combobox>
+        </clr-combobox-container>
+
+        <label for="example" class="clr-control-label">Tipo</label>
+        <div class="clr-control-container">
+          <div class="clr-input-wrapper">
+            <input
+              [(ngModel)]="novoPedido.tipo"
+              type="text"
+              id="example"
+              name="novoPedido.tipo"
+              class="clr-input"
+            />
+            <cds-icon
+              class="clr-validate-icon"
+              shape="exclamation-circle"
+            ></cds-icon>
+          </div>
+        </div>
+      </div>
+      <button
+        type="button"
+        class="btn btn-success-outline"
+        (click)="salvarPedido()"
+      >
+        Adicionar Pedido
+      </button>
+    </form>
+  </div>
+  <h1>Resolvidos</h1>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Número do pedido</th>
+        <th>Título</th>
+        <th>Descrição</th>
+        <th>Prioridade</th>
+        <th>Tipo</th>
+        <th>Data de resolução</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let pedido of pedidos">
+        <!-- <td>{{ pedido.pedidoNo }}</td>
+      <td>{{ pedido.titulo }}</td>
+      <td>{{ pedido.descricao }}</td>
+      <td>{{ pedido.prioridade }}</td>
+      <td>{{ pedido.tipo }}</td>
+      <td>{{ pedido.resolvido }}</td> -->
+      </tr>
+    </tbody>
+  </table>
+</div>
