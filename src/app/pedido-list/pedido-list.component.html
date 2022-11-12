@@ -1,6 +1,6 @@
 <h1>Pendentes</h1>
 <div class="clr-row">
-  <div class="clr-col-10">
+  <div class="clr-col-10 pendentes">
     <table class="table">
       <thead>
         <tr>
@@ -9,6 +9,8 @@
           <th>Descrição</th>
           <th>Prioridade</th>
           <th>Tipo</th>
+          <th></th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
@@ -18,6 +20,20 @@
           <td>{{ pedido.descricao }}</td>
           <td>{{ pedido.prioridade }}</td>
           <td>{{ pedido.tipo }}</td>
+          <td>
+            <clr-icon
+              (click)="excluiPedido(pedido.pedidoNo)"
+              shape="trash"
+              size="24"
+            ></clr-icon>
+          </td>
+          <td>
+            <clr-icon
+              (click)="editarPedido(pedido)"
+              shape="edit"
+              size="24"
+            ></clr-icon>
+          </td>
         </tr>
       </tbody>
     </table>
@@ -89,53 +105,43 @@
           </clr-combobox>
         </clr-combobox-container>
 
-        <label for="example" class="clr-control-label">Tipo</label>
-        <div class="clr-control-container">
-          <div class="clr-input-wrapper">
-            <input
-              [(ngModel)]="novoPedido.tipo"
-              type="text"
-              id="example"
-              name="novoPedido.tipo"
-              class="clr-input"
-            />
-            <cds-icon
-              class="clr-validate-icon"
-              shape="exclamation-circle"
-            ></cds-icon>
-          </div>
-        </div>
+        <clr-combobox-container>
+          <label>Tipo</label>
+          <clr-combobox
+            [(ngModel)]="novoPedido.tipo"
+            name="novoPedido.tipo"
+            required
+            placeholder="Selecione o tipo"
+          >
+            <clr-options>
+              <clr-option clrValue="Funcionalidade">Funcionalidade</clr-option>
+              <clr-option clrValue="Erro">Erro</clr-option>
+              <clr-option clrValue="Documentação">Documentação</clr-option>
+            </clr-options>
+          </clr-combobox>
+        </clr-combobox-container>
       </div>
       <button
         type="button"
+        id="btnSalvar"
         class="btn btn-success-outline"
         (click)="salvarPedido()"
       >
-        Adicionar Pedido
+        {{ isEdit }}
       </button>
     </form>
   </div>
-  <h1>Resolvidos</h1>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Número do pedido</th>
-        <th>Título</th>
-        <th>Descrição</th>
-        <th>Prioridade</th>
-        <th>Tipo</th>
-        <th>Data de resolução</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let pedido of pedidos">
-        <!-- <td>{{ pedido.pedidoNo }}</td>
-      <td>{{ pedido.titulo }}</td>
-      <td>{{ pedido.descricao }}</td>
-      <td>{{ pedido.prioridade }}</td>
-      <td>{{ pedido.tipo }}</td>
-      <td>{{ pedido.resolvido }}</td> -->
-      </tr>
-    </tbody>
-  </table>
+</div>
+
+<div *ngIf="this.isShowAlert" class="alert alert-success" role="alert">
+  <div class="alert-items">
+    <div class="alert-item static">
+      <div class="alert-icon-wrapper">
+        <clr-icon class="alert-icon" shape="check-circle"></clr-icon>
+      </div>
+      <span class="alert-text"
+        >Pedido {{ this.novoPedido.pedidoNo - 1 }} {{ alertText }}</span
+      >
+    </div>
+  </div>
 </div>

@@ -1,0 +1,10 @@
+clr-icon {
+  cursor: pointer;
+}
+td {
+  max-width: 2vh;
+}
+
+table {
+  min-height: 35vh;
+}
